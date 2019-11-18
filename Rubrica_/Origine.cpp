@@ -53,16 +53,6 @@ int string_len(string array[max_length]) {
 			y = array[0];
 			max_size = y.length();
 		}
-		else if (size == 2) {
-			if (array[0].length() >= array[1].length()) {
-				y = array[0];
-				max_size = y.length();
-			}
-			else {
-				y = array[1];
-				max_size = y.length();
-			}
-		}
 		else {
 			for (int i = 0; i < size; i++) {
 				if (array[i].length() >= max_size) {
@@ -87,8 +77,17 @@ void print_contacts() {
 		l_surnames = string_len(surnames) + 4;
 		l_numbers = string_len(numbers) + 4;
 		l_id = 6;
-		cout << setfill(' ') << setw(l_id) << "ID" << setw(l_names) << 
-			"NOME" << setw(l_surnames) << "COGNOME" << setw(l_numbers) << 
+		if (l_names < 8) {
+			l_names = 8;
+		}
+		if (l_surnames < 11) {
+			l_surnames = 11;
+		}
+		if (l_numbers < 10) {
+			l_numbers = 10;
+		}
+		cout << setfill(' ') << setw(l_id) << "ID" << setw(l_names) <<
+			"NOME" << setw(l_surnames) << "COGNOME" << setw(l_numbers) <<
 			"NUMERO" << endl;
 		for (int i = 0; i < size; i++) {
 			cout << setfill(' ') << setw(l_id) << i + 1 << setw(l_names) <<
@@ -100,7 +99,7 @@ void print_contacts() {
 
 void create_contact() {
 	string a, b, c;
-	system("cls");
+	system("clear");
 	cout << setfill('-') << setw(50) << "" << endl <<
 		'|' << setfill(' ') << setw(17) << "" <<
 		"CREA CONTATTO " << setfill(' ') << setw(17) << "" << '|' << endl <<
@@ -110,7 +109,7 @@ void create_contact() {
 	cin >> b;
 	cout << "NUMERO DI TELEFONO: ";
 	cin >> c;
-	if (len(names) != max_length){
+	if (len(names) != max_length) {
 		names[len(names)] = a;
 	}
 	if (len(surnames) != max_length) {
@@ -127,32 +126,32 @@ void Title() {
 		setfill(' ') << setw(15) << "" << '|' << endl <<
 		setfill('-') << setw(50) << "" << endl << endl <<
 		"a. CREA CONTATTO" << endl <<
-		"b. SELEZIONA CONTATTO" << endl << "c.ESCI" <<
+		"b. SELEZIONA CONTATTO" << endl << "c. ESCI" <<
 		endl << endl;
 	print_contacts();
-	cout << endl << "Scegliere una delle opzioni (a o b) : ";
+	cout << endl << "Scegliere una delle opzioni (a-b-c) : ";
 };
 
 void Select() {
 	int y, x;
-	system("cls");
+	system("clear");
 	cout << setfill('-') << setw(50) << "" << endl <<
 		'|' << setfill(' ') << setw(20) << "" <<
 		"CONTATTI" << setfill(' ') << setw(20) << "" << '|' << endl <<
 		setfill('-') << setw(50) << "" << endl << endl;
 	print_contacts();
-	cout <<	endl << endl << "Scegliere il contatto da selezionare : ";
+	cout << endl << endl << "Scegliere il contatto da selezionare : ";
 	cin >> y;
 	int l_id = 6;
 	int l_name = names[y - 1].length() + 4;
 	int l_surname = surnames[y - 1].length() + 4;
 	int l_number = numbers[y - 1].length() + 4;
-	system("cls");
+	system("clear");
 	cout << setfill('-') << setw(50) << "" << endl <<
 		'|' << setfill(' ') << setw(14) << "" <<
 		"CONTATTO SELEZIONATO" << setfill(' ') << setw(14) << "" << '|' << endl <<
 		setfill('-') << setw(50) << "" << endl << "1. ELIMINA CONTATTO" <<
-		endl << "2. ESCI" << endl  << endl << setfill(' ') << setw(l_id) << "ID" << 
+		endl << "2. ESCI" << endl << endl << setfill(' ') << setw(l_id) << "ID" <<
 		setw(l_name) << "NOME" << setw(l_surname) << "COGNOME" << setw(l_number) <<
 		"NUMERO" << endl << setfill(' ') << setw(l_id) << y << setw(l_name) <<
 		names[y - 1] << setw(l_surname) << surnames[y - 1] << setw(l_number) <<
@@ -184,6 +183,8 @@ int main() {
 		else if (a == 'c') {
 			break;
 		}
-		system("cls");
+		system("clear");
 	};
 }
+
+
